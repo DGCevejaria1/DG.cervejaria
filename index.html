@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DG Cervejaria - Cardápio Digital</title>
+    
+    <!-- Fontes Estilizadas -->
+    <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
+    <!-- Ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-dark: #02040a;
+            --electric-blue: #0084ff;
+            --neon-glow: 0 0 15px rgba(0, 132, 255, 0.6);
+            --border-style: 2px dashed var(--electric-blue);
+            --text-white: #ffffff;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+        body {
+            background-color: var(--bg-dark);
+            background-image: radial-gradient(circle at center, #0a1329 0%, #02040a 100%);
+            color: var(--text-white);
+            font-family: 'Rajdhani', sans-serif;
+            line-height: 1.4;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: url('https://www.transparenttextures.com/patterns/dark-matter.png');
+            opacity: 0.3;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        header {
+            text-align: center;
+            padding: 50px 20px 30px;
+            background: linear-gradient(to bottom, rgba(0, 132, 255, 0.15), transparent);
+        }
+
+        .logo-main {
+            width: 140px;
+            filter: drop-shadow(var(--neon-glow));
+            margin-bottom: 10px;
+        }
+
+        .header-tag {
+            font-family: 'Permanent Marker', cursive;
+            color: var(--electric-blue);
+            font-size: 1.2rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 15px;
+        }
+
+        .card-box {
+            border: var(--border-style);
+            border-radius: 20px;
+            padding: 25px 20px;
+            background: rgba(0, 0, 0, 0.4);
+            margin-bottom: 35px;
+        }
+
+        .header-category {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .mug-icon {
+            width: 55px;
+            filter: drop-shadow(0 0 5px var(--electric-blue));
+        }
+
+        .header-category h2 {
+            font-family: 'Permanent Marker', cursive;
+            font-size: 2rem;
+            text-transform: uppercase;
+        }
+
+        .header-category span {
+            display: block;
+            color: var(--electric-blue);
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .menu-list { list-style: none; }
+
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+
+        .item-name { text-transform: uppercase; flex-shrink: 0; }
+
+        .item-dots {
+            flex: 1;
+            border-bottom: 2px dotted rgba(255, 255, 255, 0.2);
+            margin: 0 10px;
+        }
+
+        .item-price { color: var(--electric-blue); white-space: nowrap; }
+
+        .info-bubble {
+            background: rgba(0, 132, 255, 0.15);
+            border: 1px solid var(--electric-blue);
+            padding: 12px;
+            border-radius: 10px;
+            text-align: center;
+            margin-bottom: 25px;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .extra-title {
+            text-align: center;
+            font-family: 'Permanent Marker', cursive;
+            font-size: 1.8rem;
+            margin: 40px 0 25px;
+        }
+
+        .grid-extras {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+
+        .extra-card {
+            border: 1px solid var(--electric-blue);
+            border-radius: 15px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.03);
+            text-align: center;
+        }
+
+        .extra-card h4 {
+            background: var(--electric-blue);
+            color: black;
+            display: inline-block;
+            padding: 2px 15px;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        .energy-options {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .energy-item { flex: 1; }
+
+        .energy-img {
+            height: 75px;
+            object-fit: contain;
+            margin-bottom: 10px;
+            filter: drop-shadow(0 0 8px rgba(0, 132, 255, 0.3));
+        }
+
+        .energy-name { display: block; font-weight: 700; margin-bottom: 5px; font-size: 0.9rem; }
+        .energy-price { color: var(--electric-blue); font-weight: 900; font-size: 1.2rem; }
+
+        /* BOTÃO AVALIAR GOOGLE */
+        .btn-google {
+            display: block;
+            width: 85%;
+            max-width: 320px;
+            margin: 40px auto;
+            background: white;
+            color: black;
+            text-align: center;
+            padding: 15px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 900;
+            box-shadow: var(--neon-glow);
+            font-size: 1.1rem;
+            transition: transform 0.2s ease;
+        }
+
+        .btn-google:active { transform: scale(0.95); }
+
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            border-top: 1px solid rgba(0, 132, 255, 0.2);
+        }
+
+        .social-icons a {
+            color: white;
+            font-size: 2.2rem;
+            margin: 0 15px;
+            transition: 0.3s;
+        }
+
+        .social-icons a:hover { color: var(--electric-blue); }
+
+        @media (min-width: 768px) {
+            .container { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+            .grid-extras { grid-template-columns: 1fr 1fr; grid-column: span 2; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <img src="logo-dg.png" class="logo-main" alt="Logo DG Cervejaria">
+        <p class="header-tag">Cardápio Digital</p>
+    </header>
+
+    <main class="container">
+
+        <!-- COPÃO 700ML -->
+        <section class="card-box">
+            <div class="header-category">
+                <img src="icone-copo.png" class="mug-icon" alt="Copão">
+                <div>
+                    <h2>COPÃO</h2>
+                    <span>700ML</span>
+                </div>
+            </div>
+            <div class="info-bubble">★ ESCOLHA SEU DRINK ★</div>
+            <ul class="menu-list">
+                <li class="menu-item"><span class="item-name">JECK DENELS</span><div class="item-dots"></div><span class="item-price">R$ 40</span></li>
+                <li class="menu-item"><span class="item-name">CAVALO BRANCO</span><div class="item-dots"></div><span class="item-price">R$ 35</span></li>
+                <li class="menu-item"><span class="item-name">JACK JAMES</span><div class="item-dots"></div><span class="item-price">R$ 25</span></li>
+                <li class="menu-item"><span class="item-name">BUSCA BRISA</span><div class="item-dots"></div><span class="item-price">R$ 25</span></li>
+                <li class="menu-item"><span class="item-name">PASSAPORTE</span><div class="item-dots"></div><span class="item-price">R$ 30</span></li>
+                <li class="menu-item"><span class="item-name">CAMPARI</span><div class="item-dots"></div><span class="item-price">R$ 30</span></li>
+                <li class="menu-item"><span class="item-name">MORITA</span><div class="item-dots"></div><span class="item-price">R$ 25</span></li>
+                <li class="menu-item"><span class="item-name">GIM ROKS</span><div class="item-dots"></div><span class="item-price">R$ 25</span></li>
+                <li class="menu-item"><span class="item-name">BOB PINGA</span><div class="item-dots"></div><span class="item-price">R$ 25</span></li>
+                <li class="menu-item"><span class="item-name">SMIRNOFF</span><div class="item-dots"></div><span class="item-price">R$ 25</span></li>
+            </ul>
+        </section>
+
+        <!-- BALDINHO 1.800ML -->
+        <section class="card-box">
+            <div class="header-category">
+                <img src="icone-balde.png" class="mug-icon" alt="Baldinho">
+                <div>
+                    <h2>BALDINHO</h2>
+                    <span>1,800ML</span>
+                </div>
+            </div>
+            <div class="info-bubble">
+                <span><i class="fas fa-snowflake"></i> 4 GELOS</span>
+                <span style="border-left: 2px solid var(--electric-blue); padding-left: 15px;">LATA OU 2L</span>
+            </div>
+            <ul class="menu-list">
+                <li class="menu-item"><span class="item-name">JECK DENELS</span><div class="item-dots"></div><span class="item-price">R$ 80</span></li>
+                <li class="menu-item"><span class="item-name">CAVALO BRANCO</span><div class="item-dots"></div><span class="item-price">R$ 70</span></li>
+                <li class="menu-item"><span class="item-name">JACK JAMES</span><div class="item-dots"></div><span class="item-price">R$ 50</span></li>
+                <li class="menu-item"><span class="item-name">BUSCA BRISA</span><div class="item-dots"></div><span class="item-price">R$ 50</span></li>
+                <li class="menu-item"><span class="item-name">PASSAPORTE</span><div class="item-dots"></div><span class="item-price">R$ 60</span></li>
+                <li class="menu-item"><span class="item-name">CAMPARI</span><div class="item-dots"></div><span class="item-price">R$ 60</span></li>
+                <li class="menu-item"><span class="item-name">MORITA</span><div class="item-dots"></div><span class="item-price">R$ 50</span></li>
+                <li class="menu-item"><span class="item-name">GIM ROKS</span><div class="item-dots"></div><span class="item-price">R$ 50</span></li>
+                <li class="menu-item"><span class="item-name">BOB PINGA</span><div class="item-dots"></div><span class="item-price">R$ 50</span></li>
+                <li class="menu-item"><span class="item-name">SMIRNOFF</span><div class="item-dots"></div><span class="item-price">R$ 40</span></li>
+            </ul>
+        </section>
+
+        <!-- ADICIONAIS -->
+        <h3 class="extra-title">ADICIONAL DE ENERGÉTICO</h3>
+        <div class="grid-extras">
+            <div class="extra-card">
+                <h4>No Copão (700ml)</h4>
+                <div class="energy-options">
+                    <div class="energy-item">
+                        <img src="monster.png" class="energy-img" alt="Monster">
+                        <span class="energy-name">MONSTER</span>
+                        <span class="energy-price">+ R$ 5</span>
+                    </div>
+                    <div class="energy-item">
+                        <img src="redbull.png" class="energy-img" alt="Red Bull">
+                        <span class="energy-name">RED BULL</span>
+                        <span class="energy-price">+ R$ 10</span>
+                    </div>
+                </div>
+            </div>
+            <div class="extra-card">
+                <h4>No Baldinho (1,800ml)</h4>
+                <div class="energy-options">
+                    <div class="energy-item">
+                        <img src="monster.png" class="energy-img" alt="Monster">
+                        <span class="energy-name">MONSTER</span>
+                        <span class="energy-price">+ R$ 12</span>
+                    </div>
+                    <div class="energy-item">
+                        <img src="redbull.png" class="energy-img" alt="Red Bull">
+                        <span class="energy-name">RED BULL</span>
+                        <span class="energy-price">+ R$ 15</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- COLE O LINK DO GOOGLE ABAIXO onde está escrito 'COLE_SEU_LINK_AQUI' -->
+        <a href="COLE_SEU_LINK_AQUI" target="_blank" class="btn-google">⭐ AVALIAR NO GOOGLE</a>
+
+    </main>
+
+    <footer>
+        <div class="social-icons">
+            <!-- LINK DO INSTAGRAM CONFIGURADO ABAIXO -->
+            <a href="https://www.instagram.com/dg_cervejaria/" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://wa.me/5500000000000" target="_blank"><i class="fab fa-whatsapp"></i></a>
+        </div>
+        <p style="margin-top: 20px; opacity: 0.5; font-size: 0.8rem;">CERVEJA FEITA DE ATITUDE. FEITA PRA VOCÊ.</p>
+        <p style="opacity: 0.3; font-size: 0.7rem;">© DG CERVEJARIA - TODOS OS DIREITOS RESERVADOS</p>
+    </footer>
+
+</body>
+</html>
