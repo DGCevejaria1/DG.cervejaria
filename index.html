@@ -120,6 +120,75 @@
 
         .item-price { color: var(--electric-blue); white-space: nowrap; }
 
+        /* ESTILO PARA OS NOVOS CARDS DE COPOS ESPECIAIS */
+        .special-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .special-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(0, 132, 255, 0.3);
+            border-radius: 15px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding-bottom: 15px;
+        }
+
+        .special-img-container {
+            width: 100%;
+            height: 200px;
+            background: rgba(0,0,0,0.2);
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-bottom: 2px solid var(--electric-blue);
+        }
+
+        .special-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .special-info { padding: 15px; width: 100%; }
+        
+        .special-name {
+            font-family: 'Permanent Marker', cursive;
+            font-size: 1.6rem;
+            color: var(--text-white);
+            margin-bottom: 5px;
+            text-transform: uppercase;
+        }
+
+        .special-ingredients {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 10px;
+            min-height: 40px;
+        }
+
+        .special-mago {
+            display: block;
+            color: var(--electric-blue);
+            font-style: italic;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-shadow: var(--neon-glow);
+        }
+
+        .special-price-tag {
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: var(--electric-blue);
+        }
+
         .info-bubble {
             background: rgba(0, 132, 255, 0.15);
             border: 1px solid var(--electric-blue);
@@ -221,6 +290,7 @@
         @media (min-width: 768px) {
             .container { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
             .grid-extras { grid-template-columns: 1fr 1fr; grid-column: span 2; }
+            .special-grid { grid-template-columns: 1fr 1fr 1fr; grid-column: span 2; }
         }
     </style>
 </head>
@@ -232,6 +302,62 @@
     </header>
 
     <main class="container">
+
+        <!-- CATEGORIA: COPOS ESPECIAIS (NOVA) -->
+        <section class="card-box" style="grid-column: 1 / -1;">
+            <div class="header-category">
+                <i class="fas fa-glass-cheers" style="font-size: 2.5rem; color: var(--electric-blue);"></i>
+                <div>
+                    <h2>COPOS ESPECIAIS</h2>
+                    <span>MIXOLOGIA DG</span>
+                </div>
+            </div>
+            
+            <div class="special-grid">
+                <!-- 1. TROPICAL KISS -->
+                <article class="special-card">
+                    <div class="special-img-container">
+                        <!-- COLOQUE A IMAGEM COMO tropical-kiss.jpg -->
+                        <img src="tropical-kiss.jpg" alt="Tropical Kiss" class="special-img" onerror="this.style.display='none'">
+                        <span style="position:absolute; font-size:0.8rem; opacity:0.5;">[ FOTO ]</span>
+                    </div>
+                    <div class="special-info">
+                        <h3 class="special-name">TROPICAL KISS</h3>
+                        <p class="special-ingredients">• Brisa<br>• Suco de manga</p>
+                        <p class="special-price-tag">R$ 35,00</p>
+                    </div>
+                </article>
+
+                <!-- 2. OREGON -->
+                <article class="special-card">
+                    <div class="special-img-container">
+                        <!-- COLOQUE A IMAGEM COMO oregon.jpg -->
+                        <img src="oregon.jpg" alt="Oregon" class="special-img" onerror="this.style.display='none'">
+                        <span style="position:absolute; font-size:0.8rem; opacity:0.5;">[ FOTO ]</span>
+                    </div>
+                    <div class="special-info">
+                        <h3 class="special-name">OREGON</h3>
+                        <p class="special-ingredients">• Jack Daniel's Black Berry<br>• Monster Punch</p>
+                        <p class="special-price-tag">R$ 35,00</p>
+                    </div>
+                </article>
+
+                <!-- 3. PURPLE MOON -->
+                <article class="special-card">
+                    <div class="special-img-container">
+                        <!-- COLOQUE A IMAGEM COMO purple-moon.jpg -->
+                        <img src="purple-moon.jpg" alt="Purple Moon" class="special-img" onerror="this.style.display='none'">
+                        <span style="position:absolute; font-size:0.8rem; opacity:0.5;">[ FOTO ]</span>
+                    </div>
+                    <div class="special-info">
+                        <h3 class="special-name">PURPLE MOON</h3>
+                        <p class="special-ingredients">• Cerveja Stempel<br>• Energético Bally Coco<br>• Flocos de coco</p>
+                        <span class="special-mago">"O toque do mago"</span>
+                        <p class="special-price-tag">R$ 35,00</p>
+                    </div>
+                </article>
+            </div>
+        </section>
 
         <!-- COPÃO 700ML -->
         <section class="card-box">
@@ -326,7 +452,6 @@
 
     <footer>
         <div class="social-icons">
-            <!-- LINK DO INSTAGRAM CONFIGURADO ABAIXO -->
             <a href="https://www.instagram.com/dg_cervejaria/" target="_blank"><i class="fab fa-instagram"></i></a>
             <a href="https://wa.me/5500000000000" target="_blank"><i class="fab fa-whatsapp"></i></a>
         </div>
